@@ -7,6 +7,7 @@ package com.mycompany.clase5;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,13 +18,22 @@ public class Regiones extends javax.swing.JFrame {
     /**
      * Creates new form Regiones
      */
-    
+    DefaultTableModel model = new DefaultTableModel();
+
     public static ArrayList<Region> listaRegion = new ArrayList<>();
     
     public static LinkedList<Region> listaRegionLink = new LinkedList<>();
     
     public Regiones() {
         initComponents();
+        
+        
+        model.addColumn("Código");
+        model.addColumn("Nombre");
+        model.addColumn("Precio Especial");
+        model.addColumn("Precio Individual");
+
+        jTable1.setModel(model);
     }
 
     /**
@@ -45,6 +55,8 @@ public class Regiones extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,11 +82,24 @@ public class Regiones extends javax.swing.JFrame {
             }
         });
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel3)
@@ -83,13 +108,17 @@ public class Regiones extends javax.swing.JFrame {
                     .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
                     .addComponent(jTextField2)
                     .addComponent(jTextField3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
                 .addGap(132, 132, 132))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 627, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,7 +143,9 @@ public class Regiones extends javax.swing.JFrame {
                     .addComponent(jButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -122,7 +153,7 @@ public class Regiones extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
+
         String codigo = jTextField1.getText();
         String nombre = jTextField4.getText();
         double estandar = Double.parseDouble(jTextField2.getText());
@@ -135,11 +166,14 @@ public class Regiones extends javax.swing.JFrame {
         
         listaRegionLink.add(reg);
         
-        
+        model.getDataVector().removeAllElements();
         System.out.println("Datos con Array List");
         for (int i = 0; i < listaRegion.size(); i++) {
             System.out.println(listaRegion.get(i).getCodigo() + " " + listaRegion.get(i).getNombre()  + " ");
+            model.addRow(new Object[] { listaRegion.get(i).getCodigo(), listaRegion.get(i).getNombre(), listaRegion.get(i).getEspecial(), listaRegion.get(i).getEstandar()});
         }
+        
+        jTable1.setModel(model);
         
         System.out.println("");
         System.out.println("Datos con LinkedList");
@@ -206,6 +240,8 @@ public class Regiones extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;

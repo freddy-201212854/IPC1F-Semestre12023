@@ -13,3 +13,6 @@
 
 ## Clase 5
 ### https://drive.google.com/file/d/1O8xmZknoXGdxwcMPP7_-bA1-GaNvIp9n/view?usp=sharing
+
+## Clase 6
+### https://drive.google.com/file/d/1jyo68phw-wvTQU16Nydv4AdeUhRcoHAC/view?usp=sharing
