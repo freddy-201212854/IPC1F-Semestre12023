@@ -19,3 +19,6 @@
 
 ## Clase 7
 ### https://drive.google.com/file/d/1_z534ZEd0CbIl_N3VJjB5r8pW1t0yqsp/view?usp=sharing
+
+## Clase 8
+### https://drive.google.com/file/d/1TseXXBSyx7E4RDEBQNupgy6WNF-1uqpw/view?usp=sharing
