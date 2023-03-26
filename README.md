@@ -25,3 +25,6 @@
 
 ## Clase 9
 ### https://drive.google.com/file/d/1k9VJzO4cx1ciFbOJs05mPDf9vt9bFpwq/view?usp=sharing
+
+## Clase 10
+### https://drive.google.com/file/d/1-yBvuRhlseAtes3E-lKNRyVkleqUqKAy/view?usp=sharing
