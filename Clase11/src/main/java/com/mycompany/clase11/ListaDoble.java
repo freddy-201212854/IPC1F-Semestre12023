@@ -4,6 +4,13 @@
  */
 package com.mycompany.clase11;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 /**
  *
  * @author freddymonterroso
@@ -60,6 +67,28 @@ public class ListaDoble {
     while (actual != null) {
       System.out.println(actual.valor);
       actual = actual.next;
+    }
+    System.out.println();
+  }
+    
+    public void printListNext(int indice, JLabel imagen) throws IOException {
+    Nodo2 actual = this.head;
+    int index = 0;
+    while (actual != null) {
+        System.out.println("Indice " + index);
+        if (index == indice) {
+            System.out.println(actual.valor);
+            File archivoImagen = new File(actual.valor);
+            BufferedImage img = ImageIO.read(archivoImagen);
+        
+            // Crear un ImageIcon a partir de la imagen cargada
+            ImageIcon imagenIcono = new ImageIcon(img);
+            imagen.setIcon(imagenIcono);
+            break;
+        }
+        actual = actual.next;
+      
+      index++;
     }
     System.out.println();
   }
