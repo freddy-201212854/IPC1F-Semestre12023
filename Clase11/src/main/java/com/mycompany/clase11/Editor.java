@@ -5,9 +5,12 @@
 package com.mycompany.clase11;
 
 import static com.mycompany.clase11.MenuPrincipal.usuario;
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -41,6 +44,9 @@ public class Editor extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,6 +73,27 @@ public class Editor extends javax.swing.JFrame {
             }
         });
 
+        jButton4.setText("Rojo Verde Azul Sepia");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setText("Modificar Imagen");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jButton6.setText("Blanco y Negro");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -81,8 +108,11 @@ public class Editor extends javax.swing.JFrame {
                         .addGap(33, 33, 33))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jButton6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE))
+                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -96,7 +126,13 @@ public class Editor extends javax.swing.JFrame {
                 .addComponent(jButton2)
                 .addGap(27, 27, 27)
                 .addComponent(jButton3)
-                .addContainerGap(224, Short.MAX_VALUE))
+                .addGap(39, 39, 39)
+                .addComponent(jButton4)
+                .addGap(27, 27, 27)
+                .addComponent(jButton5)
+                .addGap(29, 29, 29)
+                .addComponent(jButton6)
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         pack();
@@ -173,6 +209,242 @@ public class Editor extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+       
+        convert_Red();
+        convert_Green();
+        convert_Blue();
+        convert_Sepia();
+      // Obtener las dimensiones de la imagen
+     
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        convert_black_white();
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        modify_image_horizontal();
+        modify_image_vertical();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    public void convert_Red() {
+        BufferedImage imagen = null;
+        try {
+            imagen = ImageIO.read(new File(filePath));
+             int width = imagen.getWidth();
+      int height = imagen.getHeight();
+      
+      // Iterar sobre cada píxel de la imagen y modificar su valor de rojo
+      for (int y = 0; y < height; y++) {
+         for (int x = 0; x < width; x++) {
+            Color color = new Color(imagen.getRGB(x, y));
+            int red = color.getRed();
+            int green = color.getGreen();
+            int blue = color.getBlue();
+            Color nuevoColor = new Color(red, 0, 0);
+            imagen.setRGB(x, y, nuevoColor.getRGB());
+         }
+      }
+      
+      // Guardar la imagen en formato JPEG
+      File archivoRojo = new File("C:\\Users\\Freddy\\Documents\\NetBeansProjects\\Clase11\\ejemplo_rojo.jpg");
+      try {
+         ImageIO.write(imagen, "jpeg", archivoRojo);
+         System.out.println("Imagen guardada correctamente.");
+      } catch (IOException e) {
+         System.out.println("Error al guardar la imagen.");
+         return;
+      }
+        } catch (IOException ex) {
+            Logger.getLogger(Editor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void convert_Green()  {
+        BufferedImage imagen = null;
+        try {
+            imagen = ImageIO.read(new File(filePath));
+             int width = imagen.getWidth();
+      int height = imagen.getHeight();
+      
+      // Iterar sobre cada píxel de la imagen y modificar su valor de verde
+       for (int y = 0; y < height; y++) {
+         for (int x = 0; x < width; x++) {
+            Color color = new Color(imagen.getRGB(x, y));
+            int red = color.getRed();
+            int green = color.getGreen();
+            int blue = color.getBlue();
+            Color nuevoColor = new Color(0, green, 0);
+            imagen.setRGB(x, y, nuevoColor.getRGB());
+         }
+      }
+      
+      // Guardar la imagen en formato JPEG
+      File archivoRojo = new File("C:\\Users\\Freddy\\Documents\\NetBeansProjects\\Clase11\\ejemplo_verde.jpg");
+      try {
+         ImageIO.write(imagen, "jpeg", archivoRojo);
+         System.out.println("Imagen guardada correctamente.");
+      } catch (IOException e) {
+         System.out.println("Error al guardar la imagen.");
+         return;
+      }
+        } catch (IOException ex) {
+            Logger.getLogger(Editor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void convert_Blue()  {
+        BufferedImage imagen = null;
+        try {
+            imagen = ImageIO.read(new File(filePath));
+             int width = imagen.getWidth();
+      int height = imagen.getHeight();
+      
+      // Iterar sobre cada píxel de la imagen y modificar su valor de azul
+       for (int y = 0; y < height; y++) {
+         for (int x = 0; x < width; x++) {
+            Color color = new Color(imagen.getRGB(x, y));
+            int red = color.getRed();
+            int green = color.getGreen();
+            int blue = color.getBlue();
+            Color nuevoColor = new Color(0, 0, blue);
+            imagen.setRGB(x, y, nuevoColor.getRGB());
+         }
+      }
+      
+      // Guardar la imagen en formato JPEG
+      File archivoRojo = new File("C:\\Users\\Freddy\\Documents\\NetBeansProjects\\Clase11\\ejemplo_azul.jpg");
+      try {
+         ImageIO.write(imagen, "jpeg", archivoRojo);
+         System.out.println("Imagen guardada correctamente.");
+      } catch (IOException e) {
+         System.out.println("Error al guardar la imagen.");
+         return;
+      }
+        } catch (IOException ex) {
+            Logger.getLogger(Editor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void convert_Sepia()  {
+        BufferedImage imagen = null;
+        try {
+            imagen = ImageIO.read(new File(filePath));
+             int width = imagen.getWidth();
+      int height = imagen.getHeight();
+      
+      // Iterar sobre cada píxel de la imagen y modificar sus valores de rojo, verde y azul
+      for (int y = 0; y < height; y++) {
+         for (int x = 0; x < width; x++) {
+            Color color = new Color(imagen.getRGB(x, y));
+            int red = color.getRed();
+            int green = color.getGreen();
+            int blue = color.getBlue();
+            int nuevoRed = (int) (red * 0.393 + green * 0.769 + blue * 0.189);
+            int nuevoGreen = (int) (red * 0.349 + green * 0.686 + blue * 0.168);
+            int nuevoBlue = (int) (red * 0.272 + green * 0.534 + blue * 0.131);
+            if (nuevoRed > 255) {
+               nuevoRed = 255;
+            }
+            if (nuevoGreen > 255) {
+               nuevoGreen = 255;
+            }
+            if (nuevoBlue > 255) {
+               nuevoBlue = 255;
+            }
+            Color nuevoColor = new Color(nuevoRed, nuevoGreen, nuevoBlue);
+            imagen.setRGB(x, y, nuevoColor.getRGB());
+         }
+      }
+      
+      // Guardar la imagen en formato JPEG
+      File archivoRojo = new File("C:\\Users\\Freddy\\Documents\\NetBeansProjects\\Clase11\\ejemplo_serpie.jpg");
+      try {
+         ImageIO.write(imagen, "jpeg", archivoRojo);
+         System.out.println("Imagen guardada correctamente.");
+      } catch (IOException e) {
+         System.out.println("Error al guardar la imagen.");
+         return;
+      }
+        } catch (IOException ex) {
+            Logger.getLogger(Editor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void modify_image_horizontal()  {
+        BufferedImage imagen = null;
+        try {
+            imagen = ImageIO.read(new File(filePath));
+             int width = imagen.getWidth();
+      int height = imagen.getHeight();
+      
+       // Iterar sobre cada píxel de la imagen y voltear la imagen horizontalmente
+      for (int y = 0; y < height; y++) {
+         for (int x = 0; x < width / 2; x++) {
+            int pixelActual = imagen.getRGB(x, y);
+            int pixelOpuesto = imagen.getRGB(width - x - 1, y);
+            imagen.setRGB(x, y, pixelOpuesto);
+            imagen.setRGB(width - x - 1, y, pixelActual);
+         }
+      }
+      
+      // Guardar la imagen en formato JPEG
+      File archivoRojo = new File("C:\\Users\\Freddy\\Documents\\NetBeansProjects\\Clase11\\convert_horizontal.jpg");
+      try {
+         ImageIO.write(imagen, "jpeg", archivoRojo);
+         System.out.println("Imagen guardada correctamente.");
+      } catch (IOException e) {
+         System.out.println("Error al guardar la imagen.");
+         return;
+      }
+        } catch (IOException ex) {
+            Logger.getLogger(Editor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void modify_image_vertical()  {
+        BufferedImage imagen = null;
+        try {
+            imagen = ImageIO.read(new File(filePath));
+             int width = imagen.getWidth();
+      int height = imagen.getHeight();
+      
+       // Iterar sobre cada píxel de la imagen y voltear la imagen verticalmente
+      for (int y = 0; y < height / 2; y++) {
+         for (int x = 0; x < width; x++) {
+            int pixelActual = imagen.getRGB(x, y);
+            int pixelOpuesto = imagen.getRGB(x, height - y - 1);
+            imagen.setRGB(x, y, pixelOpuesto);
+            imagen.setRGB(x, height - y - 1, pixelActual);
+         }
+      }
+      
+      // Guardar la imagen en formato JPEG
+      File archivoRojo = new File("C:\\Users\\Freddy\\Documents\\NetBeansProjects\\Clase11\\convert_vertical.jpg");
+      try {
+         ImageIO.write(imagen, "jpeg", archivoRojo);
+         System.out.println("Imagen guardada correctamente.");
+      } catch (IOException e) {
+         System.out.println("Error al guardar la imagen.");
+         return;
+      }
+        } catch (IOException ex) {
+            Logger.getLogger(Editor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void convert_black_white() {
+        JPEGImageHandlerBN handlerBn = new JPEGImageHandlerBN(filePath);
+        try {
+            JPEGHandler.runHandler(handlerBn);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -212,6 +484,9 @@ public class Editor extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

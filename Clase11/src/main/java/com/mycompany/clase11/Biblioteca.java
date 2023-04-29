@@ -34,7 +34,7 @@ public class Biblioteca extends javax.swing.JFrame {
      * Creates new form Biblioteca
      */
     
-    ArrayList<Categoria> ListaCategorias = new ArrayList<>();
+    public static ArrayList<Categoria> ListaCategorias = new ArrayList<>();
     int indiceTextArea = 0;
     int indice = 0;
     public Biblioteca() throws BadLocationException {
@@ -58,8 +58,6 @@ public class Biblioteca extends javax.swing.JFrame {
         categoria = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);

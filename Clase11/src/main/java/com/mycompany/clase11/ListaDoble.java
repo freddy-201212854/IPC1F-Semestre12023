@@ -10,6 +10,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -89,6 +90,24 @@ public class ListaDoble {
         actual = actual.next;
       
       index++;
+    }
+    System.out.println();
+  }
+    
+  public void printListNext(int indice, JTextArea area) throws IOException {
+    Nodo2 actual = this.head;
+    int index = 0;
+    while (actual != null) {
+        System.out.println("Indice " + index);
+        if (index == indice) {
+            System.out.println(actual.valor);
+            area.append(actual.valor + "\n");
+            //Convertidor.consola.append(actual.valor + "\n");
+            break;
+        }
+        actual = actual.next;
+      
+        index++;
     }
     System.out.println();
   }
